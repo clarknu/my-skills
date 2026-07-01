@@ -38,7 +38,7 @@ triggers:
 | 3 | **状态作为基础属性** | 每个功能区和功能组件具有状态，不同状态下展示/操作/转换不同 |
 | 4 | **权限控制映射（全层级）** | 每一级功能节点（Tab/页面/功能区/功能组件）必须标注 `perm_ref`（引用 business-workflow 权限点 id）。父节点权限决定整棵子树可见性。**只做映射，不定义新权限点**。详见原则六 |
 | 5 | **API 覆盖度** | 每个功能组件必须有对应的 API 端点（按钮→POST/PUT、列表→GET、编辑→PUT/PATCH） |
-| 6 | **CHANGELOG 必写** | 每次变更后在 `design/05-{client-slug}/data/CHANGELOG.md` 记录 |
+| 6 | **CHANGELOG 必写** | 每次变更后在 `design/06-{client-slug}/data/CHANGELOG.md` 记录 |
 | 7 | **文本精确化（Text Precision）** | 每个功能组件必须定义精确的显示文本、按钮标签、占位文字、反馈提示和校验消息。所有文本标注 i18n key + 中文源文本。详见原则七 |
 
 ## 输入来源与依赖

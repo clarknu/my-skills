@@ -18,7 +18,7 @@ triggers:
 
 ## 技能说明
 - 所属流水线：页面功能设计（步骤 8.4）→ 用户端代码实现（步骤 8.7）
-- 输入源：`design/05-{client-slug}/data/tree.js`（页面功能树，`tree.pages` 格式，由 `desktop-ui-design` 产出）
+- 输入源：`design/06-{client-slug}/data/tree.js`（页面功能树，`tree.pages` 格式，由 `desktop-ui-design` 产出）
 - 输出目录：`src/desktop-{app}/`（遵循 development-standard §5.2.1 三层结构规则）
 - 与 `mobile-code-gen` 平行——移动端使用 `tree.tabs` 格式，桌面端使用 `tree.pages` 格式
 - 具体的目标框架由项目 CLAUDE.md 定义，本技能只描述通用生成原则
@@ -100,7 +100,7 @@ triggers:
 ## 一致性检查模式
 
 ### 输入
-- 功能树设计: `design/05-{client-slug}/data/tree.js`（pages 格式）
+- 功能树设计: `design/06-{client-slug}/data/tree.js`（pages 格式）
 - 已实现的页面代码: `src/desktop-{app}/`
 - 应用路由配置
 

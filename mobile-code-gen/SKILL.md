@@ -19,7 +19,7 @@ triggers:
 
 ## 技能说明
 - 所属流水线：页面功能设计（步骤 8.4）→ 用户端代码实现（步骤 8.7）
-- 输入源：`design/05-{client-slug}/data/tree.js`（页面功能树，由 `mobile-app-design` 产出）
+- 输入源：`design/06-{client-slug}/data/tree.js`（页面功能树，由 `mobile-app-design` 产出）
 - 输出目录：`src/mobile-{app}/`（遵循 development-standard §5.2.1 三层结构规则）
 - 每个页面生成页面框架文件（技术栈决定具体文件类型——模板/样式/逻辑/配置）
 - 具体的目标框架（小程序/Flutter/RN等）由项目 CLAUDE.md 定义，本技能只描述通用生成原则
@@ -82,7 +82,7 @@ triggers:
 ## 一致性检查模式
 
 ### 输入
-- 功能树设计: `design/05-{client-slug}/data/tree.js`
+- 功能树设计: `design/06-{client-slug}/data/tree.js`
 - 已实现的页面代码: `src/mobile-{app}/pages/`
 - 应用页面配置: `src/mobile-{app}/` 下的路由/配置入口文件
 - 域注册表: `design/domain-registry.js`

@@ -26,6 +26,11 @@ triggers:
 本技能定义了 API 设计的完整方法论：从输入采集到逐端点详设，再到迭代修正。
 输出是项目 `design/04-platform-api/data/` 下的领域 JS 数据文件，通过 `design/04-platform-api/api-viewer.html` 提供交互式查阅。
 
+> **v3 重要变更：协议无关设计。** 本 skill 不再仅支持 REST API。协议定义（REST / MQTT / WebSocket / gRPC 等）是项目级资产，
+> 存放在 `design/04-platform-api/protocols/` 下。端点通过 `protocol` 字段声明使用的协议类型，
+> skill 按对应协议定义的寻址方式、消息格式、RPC 语义进行校验和渲染。
+> 详见 `design/04-platform-api/protocols/rest.js` 和 `protocols/zyric-v1.js` 示例。
+
 ## 本技能规则
 
 | # | 规则 | 说明 |

@@ -32,7 +32,7 @@ triggers:
 
 ## 技能说明
 
-- **所属流水线：** `development-standard` §8.3b「后端架构设计」（新增步骤，位于 API 设计之后、TDD 设计之前）
+- **所属流水线：** `development-standard` §8.4「后端架构设计」（新增步骤，位于 API 设计之后、TDD 设计之前）
 - **定位：** 在代码实现之前，将后端架构决策固化为结构化设计资产。`api-code-gen` 以此为实现约束，`review` 以此做架构合规检查，`tdd-build` 以此设计架构承诺测试。
 - **输入源：**
   - `design/02-business-workflow/data/{slug}.js`（业务工作流——提供复杂度判断依据）
@@ -40,7 +40,7 @@ triggers:
   - `design/04-platform-api/data/{slug}.js`（API 设计——提供端点清单、缓存/幂等/频控标注）
   - `design/01-raw-input/`（原始需求——提供非功能需求、部署目标）
   - 项目 `CLAUDE.md`（技术栈与运行环境）
-- **输出目录：** `design/04-platform-api/backend-architecture/data/`
+- **输出目录：** `design/05-backend-architecture/data/`
 - **适用条件：** 复杂度 ≥ L2 时必须执行；L1 项目可跳过
 
 ---
@@ -111,7 +111,7 @@ api-code-gen 必须按架构设计生成代码骨架；review 必须检查代码
 
 | 影响维度 | L1 | L2 | L3 | L4 | L5 |
 |---------|----|----|----|----|-----|
-| **架构设计步骤** | 跳过 | 执行 §8.3b | 执行 §8.3b | 执行 §8.3b | 执行 §8.3b |
+| **架构设计步骤** | 跳过 | 执行 §8.4 | 执行 §8.4 | 执行 §8.4 | 执行 §8.4 |
 | **必填架构资产** | 0 个 | 5 个（topology/boundaries/layering/caching/security） | 7 个（L2 + resilience/data-consistency/observability） | 8 个（L3 + deployment-profile） | 9 个（全部） |
 | **分层约束** | 约定俗成 | 写入 `layering-strategy.js`，api-code-gen 生成时检查 | 同 L2 + 架构合规检查主动拦截违规 | 同 L3 + 跨服务分层规则 | 同 L4 |
 | **缓存设计** | 无要求 | Redis/HTTP 缓存拓扑必须定义 | L2 + 防击穿/穿透策略必填 | L3 + 分布式缓存一致性 | L4 + 跨区域缓存 |
@@ -405,7 +405,7 @@ deployment: {
 
 ### 步骤 7：输出结构化数据
 
-输出到 `design/04-platform-api/backend-architecture/data/`：
+输出到 `design/05-backend-architecture/data/`：
 
 | 文件 | 内容 | 适用等级 |
 |------|------|---------|
@@ -448,8 +448,12 @@ _trace: {
 
 | 文件 | 职责 |
 |------|------|
-| `design/04-platform-api/backend-architecture/architecture-viewer.html` | HTML 查看器——工具栏 + 左侧导航 + 右侧详情，双击打开即可查看（file:// 协议） |
-| `design/04-platform-api/backend-architecture/data/loader.js` | 数据加载器——加载所有架构数据 JS 文件 |
+| `design/05-backend-architecture/architecture-viewer.html` | HTML 查看器——工具栏 + 左侧导航 + 右侧详情，双击打开即可查看（file:// 协议） |
+| `design/05-backend-architecture/data/loader.js` | 数据加载器——加载所有架构数据 JS 文件 |
+
+> **模板文件位于：** `~/.agents/skills/backend-architecture-design/templates/`。
+> 首次使用时，从 templates 复制 `architecture-viewer.html` 和 `data/loader.js` 到项目 `design/05-backend-architecture/` 目录。
+> `data/example-topology.js` 提供最小示例，供新项目参考。
 
 **数据文件格式：** 挂载到 `window.ARCH_DATA` 命名空间（如 `window.ARCH_DATA["system-topology"] = {...}`），由 `architecture-viewer.html` 加载渲染。与 `workflow-viewer.html` / `er-viewer.html` / `api-viewer.html` 遵循相同模式。双击打开即可，无需 HTTP 服务器。
 

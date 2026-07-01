@@ -4,7 +4,7 @@
 
 | 场景 | 说明 |
 |------|------|
-| **流水线 §8.8** | API 代码 + 前端代码全部实现完成后，执行全量测试验证 |
+| **流水线 §8.9** | API 代码 + 前端代码全部实现完成后，执行全量测试验证 |
 | **TDD 迭代闭环（标准 §10.3c）** | 设计变更后，TDD 更新 → 执行验证 → 失败分类 → 修复循环的完整闭环 |
 | **Review 修复循环** | Review 每轮修复完成后，重新执行测试确认修复未引入新问题 |
 | **提交前守卫** | 任何代码变更提交前，执行全量测试确保全部通过 |
@@ -22,10 +22,10 @@
 | 产物 | 来源 | 就绪信号 |
 |------|------|---------|
 | **测试代码** | `tdd-build` Phase 2 输出 | `tests/` 目录下存在测试项目，编译通过（0 错误） |
-| **API 实现代码** | 流水线 §8.6 | `src/server/` 下 Controller/Service/DTO 已实现，编译通过 |
-| **ORM 模型** | 流水线 §8.6 | EF Core 迁移已生成，数据库已同步 |
-| **数据库** | 流水线 §8.6 → `dotnet ef database update` | 实际数据库 schema 与 EF model snapshot 一致 |
-| **前端代码** | 流水线 §8.7 | `src/` 下前端代码已实现（非必需，但会影响集成测试） |
+| **API 实现代码** | 流水线 §8.7 | `src/server/` 下 Controller/Service/DTO 已实现，编译通过 |
+| **ORM 模型** | 流水线 §8.7 | EF Core 迁移已生成，数据库已同步 |
+| **数据库** | 流水线 §8.7 → `dotnet ef database update` | 实际数据库 schema 与 EF model snapshot 一致 |
+| **前端代码** | 流水线 §8.8 | `src/` 下前端代码已实现（非必需，但会影响集成测试） |
 
 ### 启动前置检查清单
 
@@ -342,9 +342,9 @@ dotnet test <test-project>.csproj --verbosity normal
 
 tdd-execute 被以下上游过程独立调用。每次调用都是完整的 Step 1→5 闭环。
 
-### 6.1 被流水线 §8.8 调用
+### 6.1 被流水线 §8.9 调用
 
-**触发时机：** §8.6（API 代码）+ §8.7（前端代码）全部完成后。
+**触发时机：** §8.7（API 代码）+ §8.8（前端代码）全部完成后。
 
 **调用者：** development-standard 流水线编排。
 
@@ -374,9 +374,9 @@ tdd-execute 被以下上游过程独立调用。每次调用都是完整的 Step
 
 | 步骤 | 关系 |
 |------|------|
-| **tdd-build §8.5** | **上游依赖**。tdd-execute 运行的测试代码由 tdd-build 产出 |
-| development-standard §8.6（API 实现） | **上游依赖**。API 实现是测试的验证对象，必须在 tdd-execute 之前完成 |
-| development-standard §8.7（前端实现） | **上游依赖**。前端代码影响集成测试，应在 tdd-execute 之前完成 |
+| **tdd-build §8.6** | **上游依赖**。tdd-execute 运行的测试代码由 tdd-build 产出 |
+| development-standard §8.7（API 实现） | **上游依赖**。API 实现是测试的验证对象，必须在 tdd-execute 之前完成 |
+| development-standard §8.8（前端实现） | **上游依赖**。前端代码影响集成测试，应在 tdd-execute 之前完成 |
 | development-standard §8.9（e2e/冒烟） | **下游步骤 / 已集成**。§8.9 冒烟验证已集成为本 skill 的 Step 5，全绿后自动执行 |
 | development-standard §9（复查门控） | **互相引用**。Review 引用 tdd-execute 的执行报告；tdd-execute 的失败可能触发 review |
 | development-standard §10.3（变更传播） | **强制守卫**。代码变更 → 触发 tdd-execute → 全绿方可提交 |
